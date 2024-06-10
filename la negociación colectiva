@@ -1,0 +1,37 @@
+import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
+
+fig, ax = plt.subplots(figsize=(12, 8))
+
+# Título
+ax.set_title('Negociación Colectiva: Tipos, Características, Finalidad y Promoción de la OIT', fontsize=14, fontweight='bold')
+
+# Información principal
+informacion = {
+    "Tipos de Negociación": ["Negociación Distributiva", "Negociación Integrativa", "Negociación de Concesión"],
+    "Características de la Negociación Colectiva": ["Voluntariedad", "Representación", "Buena Fe y Transparencia", "Periodicidad", "Normatividad"],
+    "Finalidad de la Negociación Colectiva": ["Mejora de Condiciones Laborales", "Resolución de Conflictos", "Estabilidad y Seguridad Laboral", "Fortalecimiento de las Relaciones Laborales"],
+    "Promoción de la OIT": ["Fomento del Diálogo Social", "Protección de los Derechos de los Trabajadores", "Asistencia Técnica y Capacitación", "Supervisión y Cumplimiento de Normas"]
+}
+
+# Colores y posiciones
+colors = ['#ff9999','#66b3ff','#99ff99','#ffcc99']
+positions = [0.9, 0.7, 0.5, 0.3]
+
+# Crear parches para la leyenda
+patches = [mpatches.Patch(color=colors[i], label=list(informacion.keys())[i]) for i in range(len(informacion))]
+
+# Añadir información al gráfico
+for i, (key, value) in enumerate(informacion.items()):
+    ax.text(0.1, positions[i], key, fontsize=12, fontweight='bold', color=colors[i])
+    for j, item in enumerate(value):
+        ax.text(0.15, positions[i] - 0.05 * (j + 1), f"- {item}", fontsize=11)
+
+# Leyenda
+plt.legend(handles=patches, loc='lower left', bbox_to_anchor=(0.7, -0.05), ncol=1, title="Componentes")
+
+# Ocultar los ejes
+ax.axis('off')
+
+# Mostrar el gráfico
+plt.show()
